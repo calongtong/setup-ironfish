@@ -248,6 +248,24 @@ function deleteIronfish {
 	sudo rm -rf $HOME/ironfish $HOME/.ironfish $(which ironfish)
 }
 
+function displayInfo {
+	. $HOME/.bash_profile
+	sudo echo -e "\n Node Name: $IRONFISH_NODENAME"
+	sudo echo -e "\n Graffiti: $IRONFISH_NODENAME"
+	sudo echo -e "\n Wallet name:' $IRONFISH_WALLET"
+	sudo echo -e "\n Total miner threads:' $IRONFISH_THREADS"
+	
+	output=$($(which ironfish) wallet:address)
+	wallet_address=$(echo "$output" | grep "public key:" | cut -d ' ' -f 5)
+	sudo echo -e "\n Wallet address:' $wallet_address"
+	exported_wallet=$($(which ironfish) wallet:export)
+	exported_wallet_json=$($(which ironfish) wallet:export --json)
+	sudo echo -e "\n Exported wallet: $exported_wallet"
+	sudo echo -e "\n Exported wallet in json: ' $exported_wallet_json"
+	sudo echo -e $exported_wallet_json | jq	
+}
+
+
 PS3='Please enter your choice (input your option number and press enter): '
 options=("Install" "Upgrade" "Backup wallet" "Install snapshot" "Delete" "Update Mining Wallet" "Quit")
 select opt in "${options[@]}"
@@ -264,6 +282,7 @@ do
 			#installListener
 			installSnapshot
 			updateMiningWallet
+			displayInfo
 			break
             ;;
         "Upgrade")
