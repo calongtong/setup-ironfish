@@ -205,6 +205,7 @@ fi
 }
 
 function updateMiningWallet() {
+. $HOME/.bash_profile
 sudo systemctl stop ironfishd-miner
 output=$($(which ironfish) wallet:address)
 wallet_address=$(echo "$output" | grep "public key:" | cut -d ' ' -f 5)
