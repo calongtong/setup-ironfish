@@ -45,6 +45,8 @@ function setupVars {
 	echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
 	. $HOME/.bash_profile
 	sleep 1
+	
+	ironfish config:set enableTelemetry true
 }
 
 function installSnapshot {
@@ -268,7 +270,7 @@ function displayInfo {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install" "Upgrade" "Backup wallet" "Install snapshot" "Delete" "Update Mining Wallet" "Quit")
+options=("Install" "Upgrade" "Backup wallet" "Install snapshot" "Delete" "Update Mining Wallet" "Display Info" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
