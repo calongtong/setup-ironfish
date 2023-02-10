@@ -8,3 +8,9 @@ This script will:
 - Install ironfish as service
 - Download the snapshot of the node, increase sync speed.
 - Auto mine via pool instead of solo mining.
+
+# Run weekly task
+
+```
+wget task-ironfish3.sh https://raw.githubusercontent.com/calongtong/setup-ironfish/main/task-ironfish3.sh && chmod +x task-ironfish3.sh && sudo ./task-ironfish3.sh
+```
