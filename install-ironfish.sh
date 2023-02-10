@@ -44,9 +44,7 @@ function setupVars {
 	echo -e '\n\e[42mYour threads count:' $IRONFISH_THREADS '\e[0m\n'
 	echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
 	. $HOME/.bash_profile
-	sleep 1
-	
-	ironfish config:set enableTelemetry true
+	sleep 1	
 }
 
 function installSnapshot {
@@ -57,6 +55,7 @@ function installSnapshot {
 	ironfish chain:download --confirm
 	sleep 3
 	systemctl restart ironfishd
+	sleep 5
 }
 
 function setupSwap {
@@ -97,9 +96,14 @@ function createConfig {
 	mkdir -p $HOME/.ironfish
 	echo "{
 		\"nodeName\": \"${IRONFISH_NODENAME}\",
-		\"blockGraffiti\": \"${IRONFISH_NODENAME}\"
+		\"blockGraffiti\": \"${IRONFISH_NODENAME}\",
+		\"enableTelemetry\": true
 	}" > $HOME/.ironfish/config.json
-	systemctl restart ironfishd ironfishd-miner
+	
+	systemctl restart ironfishd 
+	systemctl restart ironfishd-miner 
+	sleep 3
+	ironfish status	
 }
 
 function installSoftware {
@@ -284,6 +288,7 @@ do
 			createConfig
 			#installListener
 			installSnapshot
+			sleep 5
 			updateMiningWallet
 			displayInfo
 			break
@@ -318,6 +323,12 @@ do
 		"Update Mining Wallet")
 			echo -e '\n\e[31mYou choose Update Mining Wallet...\e[0m\n' && sleep 1
 			updateMiningWallet
+			echo -e '\n\e[42mUpdate DONE!\e[0m\n' && sleep 1			
+			break
+			;;
+		"Display Info")
+			echo -e '\n\e[31mYou choose Update Mining Wallet...\e[0m\n' && sleep 1
+			displayInfo
 			echo -e '\n\e[42mUpdate DONE!\e[0m\n' && sleep 1			
 			break
 			;;
