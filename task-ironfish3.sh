@@ -11,7 +11,8 @@ echo -e "========================================\n"
 month=$(date +"%m")
 day=$(date +"%d")
 hour=$(date +"%H")
-meta_data="metadata $month $day $hour"
+minute=$(date +"%M")
+meta_data="metadata $month $day $hour $minute"
 #meta_data="meta data test"
 echo -e "$meta_data \n"
 #output_mint=$($(which ironfish) wallet:mint --name $IRONFISH_WALLET --metadata "$meta_data" --amount 10 --fee 0.0000001 --confirm)
