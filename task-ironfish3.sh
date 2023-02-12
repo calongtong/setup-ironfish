@@ -41,7 +41,7 @@ echo -e "========================================\n"
 . $HOME/.bash_profile
 asset_id_IRON=d7c86706f5817aa718cd1cfad03233bcd64a7789fd9422d3b17af6823a7e6ac6
 send_to=dfc2679369551e64e3950e06a88e68466e813c63b100283520045925adbe59ca
-output_send=$($(which ironfish) wallet:send --assetId=$asset_id_IRON --amount 0.1 --fee 0.0000001 --to $send_to --confirm)
+output_send=$($(which ironfish) wallet:send --assetId=$asset_id_IRON --amount 0.01 --fee 0.0000001 --to $send_to --confirm)
 echo $output_send
 
 tx_hash=$(echo "$output_send" | grep "Transaction Hash:" | cut -d ' ' -f 3)
