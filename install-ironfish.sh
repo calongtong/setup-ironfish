@@ -274,7 +274,7 @@ function displayInfo {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install" "Upgrade" "Backup wallet" "Install snapshot" "Delete" "Update Mining Wallet" "Display Info" "Quit")
+options=("Install" "Upgrade" "Backup wallet" "Install snapshot" "Delete" "Update Mining Wallet" "Display Info" "Install Service" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -329,6 +329,13 @@ do
 		"Display Info")
 			echo -e '\n\e[31mYou choose Update Mining Wallet...\e[0m\n' && sleep 1
 			displayInfo
+			echo -e '\n\e[42mUpdate DONE!\e[0m\n' && sleep 1			
+			break
+			;;
+			
+		"Install Service")
+			echo -e '\n\e[31mYou choose Install Service...\e[0m\n' && sleep 1
+			installService
 			echo -e '\n\e[42mUpdate DONE!\e[0m\n' && sleep 1			
 			break
 			;;
